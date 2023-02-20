@@ -67,6 +67,9 @@ console.log("La palabra 'Hola' se codifica: ", sha256("Hola"));
 //Configuración de la base de datos con node (mongoose)
 const mongoose = require("mongoose");
 
+//Se agrega esta línea quearroja la terminal, para evitar DeprecationWarning
+mongoose.set('strictQuery', false);
+
 //Conexión a mongo
 mongoose.connect('mongodb://127.0.0.1:27017/' + configuracion.database, { useNewUrlParser: true, UseUnifiedTopology: true }, (error, response) => {
     if (error) {

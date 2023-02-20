@@ -1,15 +1,22 @@
 <p>registro works!</p>
 
-<div>
-  <button
-    id="mstr-octr"
-    type="submit"
-    class="btn btn-primary"
-    (click)="MostrarOcultar()"
-  >
-    Mostrar/Ocultar
-  </button>
+<!-- Lista de botones -->
+<div id="lista-botones">
+  <!-- Botón Mostrar/Ocultar -->
+  <div class="boton-func">
+    <button type="submit" class="btn btn-primary" (click)="MostrarOcultar()">
+      Mostrar/Ocultar
+    </button>
+  </div>
+
+  <!-- Botón Mostrar tabla -->
+  <div class="boton-func">
+    <button type="submit" class="btn btn-primary" (click)="MostrarTabla()">
+      Listar Usuarios
+    </button>
+  </div>
 </div>
+<!-- Fin de la lista de botones -->
 
 <div id="registroForm" *ngIf="mostrar">
   <div class="form-group">
@@ -66,3 +73,25 @@
 <!-- de esta forma se ve solo la informacion que contiene la variable
 -->
 <div>{{ msj.datos | json }}</div>
+
+<!-- TABLA PARA MOSTRAR DATOS -->
+<table class="table" *ngIf="mostrar_tabla">
+  <thead class="thead-light">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Cedula</th>
+      <th scope="col">Nombre</th>
+      <th scope="col">Apellido</th>
+      <th scope="col">Edad</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of ListaDatos">
+      <th scope="row">1</th>
+      <td>{{ item.cedula }}</td>
+      <td>{{ item.nombre }}</td>
+      <td>{{ item.apellido }}</td>
+      <td>{{ item.edad }}</td>
+    </tr>
+  </tbody>
+</table>

@@ -7,8 +7,15 @@
     box-shadow: 0px 10px 34px -13px rgba(0, 0, 0, 0.74);
 }
 
-#mstr-octr{
-    margin-left: 283px;
-    margin-top: 100px;
-    margin-bottom: 20px;
+#lista-botones{
+    display: flex;
+    justify-content: center;
+}
+
+.boton-func{
+    margin-bottom: 15px;
+}
+
+.boton-func:not(:first-child){
+    margin-left: 20px;
 }
