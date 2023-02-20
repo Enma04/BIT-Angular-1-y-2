@@ -1,6 +1,17 @@
 <p>registro works!</p>
 
-<div id="registroForm">
+<div>
+  <button
+    id="mstr-octr"
+    type="submit"
+    class="btn btn-primary"
+    (click)="MostrarOcultar()"
+  >
+    Mostrar/Ocultar
+  </button>
+</div>
+
+<div id="registroForm" *ngIf="mostrar">
   <div class="form-group">
     <label for="name">Nombre</label>
     <input
@@ -46,3 +57,12 @@
     Registrar
   </button>
 </div>
+
+<!-- de esta forma convertimos una variable en texto para leer en el
+    html (con los "|")
+-->
+<div>{{ msj | json }}</div>
+
+<!-- de esta forma se ve solo la informacion que contiene la variable
+-->
+<div>{{ msj.datos | json }}</div>

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { MensajesService } from 'src/app/servicios/mensajes.service';
 
 @Component({
   selector: 'app-productos',
@@ -6,5 +7,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./productos.component.css']
 })
 export class ProductosComponent {
-
+  constructor(public mensaje:MensajesService) {
+    
+  }
 }

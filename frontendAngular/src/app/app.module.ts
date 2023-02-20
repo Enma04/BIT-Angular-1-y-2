@@ -12,6 +12,7 @@ import { MenuComponent } from './MisComponentes/menu/menu.component';
 import { LoginComponent } from './MisComponentes/login/login.component';
 import { RegistroComponent } from './MisComponentes/registro/registro.component';
 import { FormsModule } from '@angular/forms';
+import { MensajesComponent } from './MisComponentes/mensajes/mensajes.component';
 
 
 
@@ -24,7 +25,8 @@ import { FormsModule } from '@angular/forms';
     Page404Component,
     MenuComponent,
     LoginComponent,
-    RegistroComponent
+    RegistroComponent,
+    MensajesComponent
   ],
   imports: [
     BrowserModule,

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';  //Se importa el OnInit
 import { Persona } from 'src/app/interfaces/persona';
+import { MensajesService } from 'src/app/servicios/mensajes.service';
 
 @Component({
   selector: 'app-registro',
@@ -27,20 +28,46 @@ export class RegistroComponent implements OnInit {
   //Es el tercer elemento que se carga, luego del constructor
   //y el ngOnChanges
   ngOnInit(): void {
-    console.log("Cargando primero");
+    console.log("Cargando el OnInit");
   }
 
-  //El constructor es lo primero que se carga en Angular
-  constructor(){
+
+  
+
+
+  //--------------------------------------------------------------------
+  //CONSTRUCTOR DE LA CLASE
+  //--------------------------------------------------------------------
+
+  /*
+  El constructor es lo primero que se carga en Angular.
+
+  Definimos una variable msj de tipo MensajeService
+  para podeer hacer uso de este servicio, sus variables
+  y métodos; msj debe ser público para usar la variable
+  en el html, de lo contrario, es mejor manejarla privada
+  para uso local (solamente en el TypeScript).
+  */
+
+  constructor(public msj:MensajesService){ 
     console.log("Yo tengo más poder");
   }
 
 
 
+
+
+
+  //--------------------------------------------------------------------
+  //VARIABLES DE LA CLASE
+  //--------------------------------------------------------------------
+
   nombre: string = "";
   email: string = "";
   password: string = "";
+  mostrar: boolean = true;
 
+  //VARIABLES DE TIPO OBJETO
   persona1: Persona = {
     nombre: "Enmanuel",
     apellido: "Berruecos",
@@ -48,8 +75,37 @@ export class RegistroComponent implements OnInit {
     habilidades: ["programar", "Streamer", 1],
   }
 
+
+
+
+
+  //--------------------------------------------------------------------
+  // FUNCIONES DE LA CLASE RegistroComponent
+  //--------------------------------------------------------------------
+
+
+
+  //Guardar la información
   Guardar() {
-    console.log(this.nombre);
+    //console.log(this.nombre);
+    //this.msj.datos.push({ mensaje: "push al array" });
+    //this.msj.miMsj = "Usuario Guardado!";
+    
+    //Hacemos uso de la función que almacena el tipo de mensaje
+    this.msj.Cargar("success", "Usuario Registrado!", 5000);
+    this.msj.Cargar( "danger", "Usuario no Registrado!", 6000);
+
+
+    //Lo último que se hace (limpiar datos)
+    this.nombre = "";
+    this.email = "";
+    this.password = "";
+  }
+
+
+  //Mostrar u Ocultar el registro
+  MostrarOcultar() {
+    this.mostrar = !this.mostrar;
   }
 
 }
