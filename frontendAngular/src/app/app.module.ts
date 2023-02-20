@@ -13,6 +13,11 @@ import { LoginComponent } from './MisComponentes/login/login.component';
 import { RegistroComponent } from './MisComponentes/registro/registro.component';
 import { FormsModule } from '@angular/forms';
 import { MensajesComponent } from './MisComponentes/mensajes/mensajes.component';
+import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
+
+//HttpClientModule se encarga de realizar la petición
+//HTTP_INTERCEPTORS es una petición antes de que salga la petición real
+//para organizar cabeceras, tipos de datos, etc.
 
 
 
@@ -29,6 +34,7 @@ import { MensajesComponent } from './MisComponentes/mensajes/mensajes.component'
     MensajesComponent
   ],
   imports: [
+    HttpClientModule,  //Se importa
     BrowserModule,
     AppRoutingModule,
     //Se importa esta librería "FormsModule" para utilizar el modelo banana in box en html
