@@ -54,7 +54,7 @@ usuariosModel.Guardar = function (data, callback) {
         }
         else {
             console.log(correcto);
-            return callback({ state: true, mensaje: correcto });
+            return callback({ state: true, mensaje: "Usuario guardado correctamente" });
         }
     })
 

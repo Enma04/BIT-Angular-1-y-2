@@ -125,11 +125,11 @@ export class RegistroComponent implements OnInit {
   Registrar() {
 
     let post = {
-    host: this.PeticionDeLlegada.url_local,
-    path: "/Cliente/Guardar",
+      host: this.PeticionDeLlegada.url_local,
+      path: "/Cliente/Guardar",
       payload: {
         cedula      : this.cedula,
-        name      : this.nombre,
+        name        : this.nombre,
         apellido    : this.apellido,
         edad        : this.edad,
         direccion   : this.direccion,
