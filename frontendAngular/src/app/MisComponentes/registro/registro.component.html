@@ -1,7 +1,7 @@
 <p>registro works!</p>
 
 <!-- Lista de botones -->
-<div id="lista-botones">
+<div class="lista-botones">
   <!-- Botón Mostrar/Ocultar -->
   <div class="boton-func">
     <button type="submit" class="btn btn-primary" (click)="MostrarOcultar()">
@@ -20,13 +20,54 @@
 
 <div id="registroForm" *ngIf="mostrar">
   <div class="form-group">
-    <label for="name">Nombre</label>
+    <label for="cedula">Cedula</label>
     <input
       type="text"
       class="form-control"
-      id="name"
-      placeholder="Juan"
-      [(ngModel)]="nombre"
+      id="cedula"
+      placeholder="Ej. 11223344"
+      [(ngModel)]="cedula"
+    />
+  </div>
+
+  <div class="form-group">
+    <label for="name">Nombre</label>
+    <input type="text" class="form-control" id="name" [(ngModel)]="nombre" />
+  </div>
+
+  <div class="form-group">
+    <label for="apellido">Apellido</label>
+    <input
+      type="text"
+      class="form-control"
+      id="apellido"
+      [(ngModel)]="apellido"
+    />
+  </div>
+
+  <div class="form-group">
+    <label for="edad">Edad</label>
+    <input type="number" class="form-control" id="edad" [(ngModel)]="edad" />
+  </div>
+
+  <div class="form-group">
+    <label for="dir">Direccion</label>
+    <input type="text" class="form-control" id="dir" [(ngModel)]="direccion" />
+  </div>
+
+  <div class="form-group">
+    <label for="tel">Telefono</label>
+    <input type="text" class="form-control" id="tel" [(ngModel)]="telefono" />
+  </div>
+
+  <div class="form-group">
+    <label for="estado">Estado civil</label>
+    <input
+      type="text"
+      class="form-control"
+      id="estado"
+      placeholder="ej. soltero,casado, divorciado, etc."
+      [(ngModel)]="estadocivil"
     />
   </div>
 
@@ -60,9 +101,16 @@
     <label class="form-check-label" for="Check">Check me out</label>
   </div>
 
-  <button type="submit" class="btn btn-primary" (click)="Guardar()">
-    Registrar
-  </button>
+  <!-- Lista de botones -->
+  <div class="lista-botones">
+    <!-- Botón Mostrar/Ocultar -->
+    <div class="boton-func">
+      <button type="submit" class="btn btn-primary" (click)="Registrar()">
+        Registrar
+      </button>
+    </div>
+  </div>
+  <!-- Fin de la lista de botones -->
 </div>
 
 <!-- de esta forma convertimos una variable en texto para leer en el

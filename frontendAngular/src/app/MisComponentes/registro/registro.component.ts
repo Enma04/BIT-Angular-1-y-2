@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';  //Se importa el OnInit
+import { empty } from 'rxjs';
 import { Persona } from 'src/app/interfaces/persona';
 import { MensajesService } from 'src/app/servicios/mensajes.service';
 import { PeticionService } from 'src/app/servicios/peticion.service';
@@ -9,7 +10,11 @@ import { PeticionService } from 'src/app/servicios/peticion.service';
   styleUrls: ['./registro.component.css']
 })
   
-//Clase
+  
+  
+   //--------------------------------------------------------------------
+  //CLASE: RegistroComponent
+  //--------------------------------------------------------------------
 export class RegistroComponent implements OnInit {
 
 
@@ -17,9 +22,16 @@ export class RegistroComponent implements OnInit {
   //VARIABLES DE LA CLASE
   //--------------------------------------------------------------------
 
+  cedula: string = "";
   nombre: string = "";
+  apellido: string = "";
   email: string = "";
+  edad: number = 0;
+  direccion: string = "";
+  telefono: string = "";
+  estadocivil: string = "";
   password: string = "";
+
   mostrar: boolean = true;
   mostrar_tabla: boolean = false;
   ListaDatos: any[] = [];
@@ -50,7 +62,7 @@ export class RegistroComponent implements OnInit {
 
 
   //Es el tercer elemento que se carga, luego del constructor
-  //y el ngOnChanges
+  //y el ngOnChanges. (lo pusimos aqui para ver el nivel de carga)
   ngOnInit(): void {
     console.log("Cargando el OnInit");
     this.ListarUsuarios();
@@ -91,25 +103,7 @@ export class RegistroComponent implements OnInit {
 
 
 
-  //Guardar la información
-  Guardar() {
-    //console.log(this.nombre);
-    //this.msj.datos.push({ mensaje: "push al array" });
-    //this.msj.miMsj = "Usuario Guardado!";
-    
-    //Hacemos uso de la función que almacena el tipo de mensaje
-    this.msj.Cargar("success", "Usuario Registrado!", 5000);
-    this.msj.Cargar( "danger", "Usuario no Registrado!", 6000);
-
-
-    //Lo último que se hace (limpiar datos)
-    this.nombre = "";
-    this.email = "";
-    this.password = "";
-  }
-
-
-  //Mostrar u Ocultar el registro
+    //Mostrar u Ocultar el registro
   MostrarOcultar() {
     this.mostrar = !this.mostrar;
   }
@@ -117,6 +111,75 @@ export class RegistroComponent implements OnInit {
   //Mostrar u Ocultar el registro
   MostrarTabla() {
     this.mostrar_tabla = !this.mostrar_tabla;
+  }
+
+
+
+
+
+
+
+  //C.R.U.D
+
+  //Guardar la información
+  Registrar() {
+
+    let post = {
+    host: this.PeticionDeLlegada.url_local,
+    path: "/Cliente/Guardar",
+      payload: {
+        cedula      : this.cedula,
+        name      : this.nombre,
+        apellido    : this.apellido,
+        edad        : this.edad,
+        direccion   : this.direccion,
+        telefono    : this.telefono,
+        estadocivil : this.estadocivil,
+        email       : this.email,
+        password    : this.password,
+      }
+    }
+
+
+    //Petición de tipo Post
+    this.PeticionDeLlegada.Post(post.host + post.path, post.payload).then(
+      (respuesta: any) => {
+
+        if (respuesta.state == false) {
+          //Cargamos el mensaje de peligro, si falta un campo
+          this.msj.Cargar("danger", respuesta.mensaje, 4000);
+        }
+        else {
+          //Cargamos el mensaje exitoso
+          this.msj.Cargar("success", respuesta.mensaje, 4000);
+
+          //Lo último que se hace (limpiar datos)
+          this.cedula = "";
+          this.nombre = "";
+          this.apellido = "";
+          this.edad = 0;
+          this.direccion = "";
+          this.telefono = "";
+          this.estadocivil = "";
+          this.email = "";
+          this.password = "";
+
+          this.ListarUsuarios();
+        }
+        
+      })
+
+
+
+
+    //console.log(this.nombre);
+    //this.msj.datos.push({ mensaje: "push al array" });
+    //this.msj.miMsj = "Usuario Guardado!";
+    
+    //Hacemos uso de la función que almacena el tipo de mensaje
+    //this.msj.Cargar("success", "Usuario Registrado!", 5000);
+    //this.msj.Cargar( "danger", "Usuario no Registrado!", 6000);
+
   }
   
 
@@ -139,4 +202,4 @@ export class RegistroComponent implements OnInit {
 
   
 
-}
+} //FIN DE LA CLASE: RegistrosComponent
